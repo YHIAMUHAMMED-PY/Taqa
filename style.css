@@ -1,0 +1,592 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo+Play&display=swap");
+:root {
+	--adjust-size: 0px; /* 必要に応じて */
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,
+body {
+	overscroll-behavior-x: none;
+	overscroll-behavior-y: none;
+	scroll-behavior: smooth;
+	
+}
+body {
+	position: relative;
+	color: #222;
+	font-family: 'Cairo Play', sans-serif;
+	min-height: 100vh;
+	overflow-x: hidden;
+	background-size: cover;
+	background-color: #212121;
+
+}
+::selection{
+	color:black;
+}
+main {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 100vw;
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+p {
+	line-height: 1;
+}
+a {
+	color: crimson;
+	text-decoration: none;
+}
+img {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+}
+.number{
+    color:#3f37c9;
+    font-weight: 1000;
+    text-align: center;
+    word-spacing: 5px;
+    font-size:25px;
+}
+.name{
+    color:#5f0f40;
+    font-weight: 700;
+    text-align: center;
+    word-spacing: 5px;
+    font-size:19px;
+}
+.job{
+    color:#0f4c5c;
+    font-weight: 600;
+    text-align: center;
+    word-spacing: 1px;
+    font-size:18px;
+}
+.totalday{
+    color:#e36414;
+    font-weight: 500;
+    text-align: center;
+    word-spacing: 1px;
+    font-size:18px;
+}
+.absent{
+    color:#9a031e;
+    font-weight: 500;
+    text-align: center;
+    word-spacing: 1px;
+    font-size:18px;
+}
+.date{
+    color:#4361ee;
+    font-weight: 500;
+    text-align: center;
+    word-spacing: 1px;
+    font-size:18px;
+}
+#gallery {
+	position: relative;
+	left: calc(-1 * var(--adjust-size));
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 20px;
+	max-width: 100vw;
+	padding: 20px;
+	-webkit-perspective: 0;
+	perspective: 0;
+}
+figure:hover{
+	border-bottom:4px solid #dba1ac;
+	border-right:4px solid #1a158b;
+	border-radius: 20px;
+	animation-timeline:auto;
+	animation-range-start: normal;
+	animation-range-end:normal;
+	animation:3s linear 0s infinite normal forwards running animate;
+}
+@keyframes animate {
+	100%{
+		background-position:-200% center
+	}
+}
+#gallery figure:nth-child(7n) {
+	--duration: 1s;
+	--pin-color: crimson;
+}
+#gallery figure:nth-child(7n + 1) {
+	--duration: 1.8s;
+	--pin-color: hotpink;
+}
+#gallery figure:nth-child(7n + 2) {
+	--duration: 1.3s;
+	--pin-color: magenta;
+}
+#gallery figure:nth-child(7n + 3) {
+	--duration: 1.5s;
+	--pin-color: orangered;
+}
+#gallery figure:nth-child(7n + 4) {
+	--duration: 1.1s;
+	--pin-color: darkorchid;
+}
+#gallery figure:nth-child(7n + 5) {
+	--duration: 1.6s;
+	--pin-color: deeppink;
+}
+#gallery figure:nth-child(7n + 6) {
+	--duration: 1.2s;
+	--pin-color: mediumvioletred;
+}
+#gallery figure:nth-child(3n) {
+	--angle: 3deg;
+}
+#gallery figure:nth-child(3n + 1) {
+	--angle: -3.3deg;
+}
+#gallery figure:nth-child(3n + 2) {
+	--angle: 2.4deg;
+}
+#gallery figure:nth-child(odd) {
+	--direction: alternate;
+}
+#gallery figure:nth-child(even) {
+	--direction: alternate-reverse;
+}
+#gallery figure {
+	--angle: 3deg;
+	--count: 5;
+	--duration: 1s;
+	--delay: calc(-0.5 * var(--duration));
+	--direction: alternate;
+	--pin-color: red;
+
+	position: relative;
+	display: inline-block;
+	margin: var(--adjust-size);
+	padding: 0.5rem;
+	border-radius: 5px;
+	box-shadow: 0 7px 8px rgba(0, 0, 0, 0.4);
+	width: 100%;
+	height: auto;
+	text-align: center;
+	background-color: ghostwhite;
+	background-image: url("/IMAGE/marjan-blan-_kUxT8WkoeY-unsplash.jpg");
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: multiply;
+
+	transform-origin: center 0.22rem;
+	will-change: transform;
+	break-inside: avoid;
+	overflow: hidden;
+	outline: 1px solid transparent;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+#gallery .topone{
+	background-color: gold;
+
+}
+#gallery.active figure {
+	animation-duration: var(--duration), 1.5s;
+	animation-delay: var(--delay),
+		calc(var(--delay) + var(--duration) * var(--count));
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: var(--count), 1;
+	animation-direction: var(--direction), normal;
+	animation-fill-mode: both;
+	animation-name: swing, swingEnd;
+}
+#gallery figure:after {
+	position: absolute;
+	top: 0.22rem;
+	left: 50%;
+	width: 0.7rem;
+	height: 0.7rem;
+	content: "";
+	background: var(--pin-color);
+	border-radius: 50%;
+	box-shadow: -0.1rem -0.1rem 0.3rem 0.02rem rgba(0, 0, 0, 0.5) inset;
+	filter: drop-shadow(0.3rem 0.15rem 0.2rem rgba(0, 0, 0, 0.5));
+	transform: translateZ(0);
+	z-index: 2;
+}
+figure img {
+	aspect-ratio: 1 /1;
+	width: 100%;
+	object-fit: cover;
+	display: block;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	z-index: 1;
+}
+figure figcaption {
+	font-size: 14px;
+	font-weight: 400;
+	z-index: 1;
+}
+figure h2 {
+	color: crimson;
+	font-size: 22px;
+}
+figure p {
+	font-size: 17px;
+}
+figure small {
+	font-size: 12px;
+}
+figure > div {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+@keyframes swing {
+	0% {
+		transform: rotate3d(0, 0, 1, calc(-1 * var(--angle)));
+	}
+	100% {
+		transform: rotate3d(0, 0, 1, var(--angle));
+	}
+}
+@keyframes swingEnd {
+	to {
+		transform: rotate3d(0, 0, 1, 0deg);
+	}
+}
+#info {
+	position: relative;
+	text-align: center;
+	z-index: 1;
+	color:#ddd;
+
+}
+#info a {
+	font-size: 1.1rem;
+}
+/*
+@media (orientation: landscape) {
+	#gallery {
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	}
+}
+*/
+@media (min-width: 800px) {
+	#gallery {
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	}
+}
+ul {
+	list-style: none;
+	font-size: 1.1rem;
+  line-height: 1.2;
+  color: #ddd;
+  }
+  
+  .main {
+	max-width: 75rem;
+	padding: 3em 1.5em;
+
+
+	
+
+  }
+  
+  .main__heading {
+	font-weight: 600;
+	font-size: 2.25em;
+	margin-bottom: 100px;
+	margin:30px;
+	text-align: center;
+	color: #eceff1;
+
+  }
+  :root {
+    --glow-hue: 222deg;
+    --shadow-hue: 180deg;
+    --spring-easing: linear(
+    0, 0.002, 0.01 0.9%, 0.038 1.8%, 0.156, 0.312 5.8%, 0.789 11.1%, 1.015 14.2%,
+    1.096, 1.157, 1.199, 1.224 20.3%, 1.231, 1.231, 1.226, 1.214 24.6%,
+    1.176 26.9%, 1.057 32.6%, 1.007 35.5%, 0.984, 0.968, 0.956, 0.949 42%,
+    0.946 44.1%, 0.95 46.5%, 0.998 57.2%, 1.007, 1.011 63.3%, 1.012 68.3%,
+    0.998 84%, 1
+  );
+    --spring-duration: 1.33s;
+}
+@property --shimmer {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 33deg;
+}
+
+@keyframes shimmer {
+    0% {
+        --shimmer: 0deg;
+    }
+    100% {
+        --shimmer: 360deg;
+    }
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    55% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes text {
+    0% {
+        background-position: 100% center;
+    }    
+    100% {
+        background-position: -100% center;
+    }    
+}
+
+.btn {
+    color: var(--bg);
+    font-weight: 600;
+    /*     background-image: linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5); */
+    background-image: linear-gradient(
+        315deg,
+        #ffc4ec -10%,
+        #efdbfd 50%,
+        #ffedd6 110%
+    );
+    padding: .8em 1.4em;
+    position: relative;
+    isolation: isolate;
+    box-shadow: 0 2px 3px 1px hsl(var(--glow-hue) 50% 20% / 50%), inset 0 -10px 20px -10px hsla(var(--shadow-hue),10%,90%,95%);
+    border-radius: 0.66em;
+    scale: 1;
+    transition: all var(--spring-duration) var(--spring-easing);
+}
+
+.btn:hover:not(:active),
+.btn.active {
+    transition-duration: calc(var(--spring-duration)*0.5);
+    scale: 1.2;
+    box-shadow: 0 4px 8px -2px hsl(var(--glow-hue) 50% 20% / 50%), inset 0 0 0 transparent;
+}
+.btn:active {
+    scale: 1.1;
+    transition-duration: calc(var(--spring-duration)*0.5);
+}
+
+.shimmer {
+    position: absolute;
+    inset: -40px;
+    border-radius: inherit;
+    mask-image: conic-gradient(
+        from var(--shimmer, 0deg),
+        transparent 0%,
+        transparent 10%,
+        black 36%,
+        black 45%,
+        transparent 50%,
+        transparent 60%,
+        black 85%,
+        black 95%,
+        transparent 100%
+    );
+    mask-size: cover;
+    mix-blend-mode: plus-lighter;
+    animation: shimmer 1s linear infinite both;
+}
+.btn:hover .shimmer::before,
+.btn:hover .shimmer::after,
+.btn.active .shimmer::before,
+.btn.active .shimmer::after {
+    opacity: 1;
+    animation: shine 1.2s ease-in 1 forwards;
+}
+.shimmer::before,
+.shimmer::after {
+    transition: all 0.5s ease;
+    opacity: 0;
+    content: "";
+    border-radius: inherit;
+    position: absolute;
+    mix-blend-mode: color;
+    inset: 40px;
+    pointer-events: none;
+}
+.shimmer::before {
+    box-shadow: 0 0 3px 2px hsl(var(--glow-hue) 20% 95%),
+        0 0 7px 4px hsl(var(--glow-hue) 20% 80%),
+        0 0 13px 4px hsl(var(--glow-hue) 50% 70%),
+        0 0 25px 5px hsl(var(--glow-hue) 100% 70%);
+    z-index: -1;
+}
+
+.shimmer::after {
+    box-shadow: inset 0 0 0 1px hsl(var(--glow-hue) 70% 95%),
+        inset 0 0 2px 1px hsl(var(--glow-hue) 100% 80%),
+        inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
+    z-index: 2;
+}
+
+.btn .text {
+    color: transparent;
+    background-clip: text;
+    background-color: var(--bg);
+    background-image: linear-gradient(120deg, transparent, hsla(var(--glow-hue),100%,80%,0.66) 40%, hsla(var(--glow-hue),100%,90%,.9) 50%, transparent 52%);
+    background-repeat: no-repeat;
+    background-size: 300% 300%;
+    background-position: center 200%;
+}
+
+.btn:hover .text,
+.btn.active .text {
+    animation: text .66s ease-in 1 both;
+}
+  .cards {
+	position: relative;
+	background-color: #212121;
+
+  }
+  
+  .cards__inner {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2.5em;
+	background-color: #212121;
+	
+  }
+  
+  .card {
+	--flow-space: 0.5em;
+	--hsl: var(--hue), var(--saturation), var(--lightness);
+	flex: 1 1 14rem;
+	padding: 1.5em 2em;
+	display: grid;
+	grid-template-rows: auto auto auto 1fr;
+	align-items: start;
+	gap: 1.25em;
+	color: #eceff1;
+	background-color: #2b2b2b;
+	border: 1px solid #eceff133;
+	border-radius: 15px;
+	text-align: center;
+  }
+  
+  .card:nth-child(1) {
+	--hue: 165;
+	--saturation: 82.26%;
+	--lightness: 51.37%;
+  }
+  
+  .card:nth-child(2) {
+	--hue: 291.34;
+	--saturation: 95.9%;
+	--lightness: 61.76%;
+  }
+  
+  .card:nth-child(3) {
+	--hue: 338.69;
+	--saturation: 100%;
+	--lightness: 48.04%;
+  }
+  
+  .card__bullets {
+	line-height: 1.4;
+  }
+  
+  .card__bullets li::before {
+	display: inline-block;
+	content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='16' title='check' fill='%23dddddd'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z' /%3E%3C/svg%3E");
+	transform: translatey(0.25ch);
+	margin-right: 1ch;
+  }
+  
+  .card__heading {
+	font-size: 1.05em;
+	font-weight: 600;
+  }
+  
+  .card__price {
+	font-size: 30px;
+	font-weight: 700;
+	color:goldenrod;
+  }
+  
+  .flow > * + * {
+	margin-top: var(--flow-space, 1.25em);
+  }
+  
+  .cta {
+	display: block;
+	align-self: end;
+	margin: 1em 0 0.5em 0;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background-color: #0d0d0d;
+	padding: 0.7em;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: 600;
+  }
+  
+  .overlay {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	user-select: none;
+	opacity: var(--opacity, 0);
+	-webkit-mask: radial-gradient(
+	  25rem 25rem at var(--x) var(--y),
+	  #000 1%,
+	  transparent 50%
+	);
+	mask: radial-gradient(
+	  25rem 25rem at var(--x) var(--y),
+	  #000 1%,
+	  transparent 50%
+	);
+	transition: 400ms mask ease;
+	will-change: mask;
+  }
+  
+  .overlay .card {
+	background-color: hsla(var(--hsl), 0.15);
+	border-color: hsla(var(--hsl), 1);
+	box-shadow: 0 0 0 1px inset hsl(var(--hsl));
+  }
+  
+  .overlay .cta {
+	display: block;
+	grid-row: -1;
+	width: 100%;
+	background-color: hsl(var(--hsl));
+	box-shadow: 0 0 0 1px hsl(var(--hsl));
+  }
+  
+  :not(.overlay) > .card {
+	transition: 400ms background ease;
+	will-change: background;
+  }
+  
+  :not(.overlay) > .card:hover {
+	--lightness: 95%;
+	background: hsla(var(--hsl), 0.1);
+  }
+  

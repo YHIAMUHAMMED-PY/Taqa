@@ -63,6 +63,9 @@ img {
     text-align: center;
     word-spacing: 5px;
     font-size:19px;
+	border:3px solid #0f4c5c;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 .job{
     color:#0f4c5c;
@@ -70,6 +73,8 @@ img {
     text-align: center;
     word-spacing: 1px;
     font-size:18px;
+	
+	
 }
 .totalday{
     color:#e36414;
@@ -86,11 +91,14 @@ img {
     font-size:18px;
 }
 .date{
-    color:#4361ee;
+    color:red;
     font-weight: 500;
     text-align: center;
     word-spacing: 1px;
     font-size:18px;
+	border:3px solid silver;
+	border-bottom-left-radius: 50%;
+	border-bottom-right-radius: 50%;
 }
 #gallery {
 	position: relative;
@@ -290,6 +298,8 @@ ul {
 	
 
   }
+
+  
   
   .main__heading {
 	font-weight: 600;
@@ -429,6 +439,10 @@ ul {
   }
   
   :not(.overlay) > .card:hover {
+	--lightness: 95%;
+	background: hsla(var(--hsl), 0.1);
+  }
+  
 	--lightness: 95%;
 	background: hsla(var(--hsl), 0.1);
   }

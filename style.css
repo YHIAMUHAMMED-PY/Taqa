@@ -99,6 +99,7 @@ img {
 	border:3px solid silver;
 	border-bottom-left-radius: 50%;
 	border-bottom-right-radius: 50%;
+	display:none;
 }
 #gallery {
 	position: relative;
